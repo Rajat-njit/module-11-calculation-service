@@ -3,24 +3,31 @@ version: "3.9"
 services:
   db:
     image: postgres:16
-    container_name: postgres_db
+    container_name: module11_postgres
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: fastapi_db
+      POSTGRES_DB: module11_db
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   app:
     build: .
-    container_name: fastapi_app
+    container_name: module11_fastapi_app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/fastapi_db
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/module11_db
+      PYTHONPATH: /app
     ports:
       - "8000:8000"
 
