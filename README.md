@@ -41,8 +41,6 @@ module-11/
 │   │   ├── user.py
 │   │   ├── calculation_ops.py
 │   │   └── calculation_factory.py
-│   ├── factories/
-│   │   └── calculation_factory.py
 │   ├── routes/
 │       └── (Module 12 will add Calculation endpoints)
 │
