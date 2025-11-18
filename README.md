@@ -1,8 +1,6 @@
 
 # **Module 11 — Secure Calculation Service (FastAPI + SQLAlchemy + Pydantic + CI/CD + Docker)**
 
----
-
 [![CI/CD Pipeline – Module 11 Calculation Service](https://github.com/Rajat-njit/module-11-calculation-service/actions/workflows/ci.yml/badge.svg)](https://github.com/Rajat-njit/module-11-calculation-service/actions/workflows/ci.yml)
 ---
 ## **📌 Introduction**
@@ -445,7 +443,39 @@ Your final pipeline includes:
 
 ---
 
-# **✨ Key Features Summary (For Professor’s Script)**
+## **🧪 Test Environment (conftest.py)**
+
+All tests in this project use a centralized `conftest.py` file, which configures a clean and isolated test environment. The file provides shared pytest fixtures that automatically set up and tear down the database for every test run.
+
+### **Key Fixtures**
+
+* **`db`** – Creates a fresh SQLite test database before each test.
+
+  * Drops and recreates all tables
+  * Returns a SQLAlchemy session
+  * Ensures full isolation between tests
+
+* **`client`** – Provides a FastAPI `TestClient` that uses the same test database.
+
+  * Overrides FastAPI’s `get_db` dependency
+  * Allows route tests to run against the SQLite test session
+
+* **`db_session`** – Secondary lightweight DB fixture used for unit tests that only need direct ORM interaction.
+
+### **Why This Matters**
+
+Using `conftest.py` ensures:
+
+* Deterministic and repeatable tests
+* No cross-test contamination
+* API tests and ORM tests share the same state
+* CI/CD pipeline can run tests reliably using the same fixtures
+
+This structure mirrors **real-world backend testing patterns** and ensures complete separation of unit vs. integration tests while maintaining a simple, reusable test setup.
+
+---
+
+# **✨ Key Features Summary **
 
 ### **Secure User Model**
 
