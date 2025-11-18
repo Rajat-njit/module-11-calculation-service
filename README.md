@@ -1,7 +1,7 @@
 
 # **Module 11 — Secure Calculation Service (FastAPI + SQLAlchemy + Pydantic + CI/CD + Docker)**
 
-### *Advanced Backend Development with Testing, Design Patterns, and Deployment*
+[![CI/CD Pipeline – Module 11 Calculation Service](https://github.com/Rajat-njit/module-11-calculation-service/actions/workflows/ci.yml/badge.svg)](https://github.com/Rajat-njit/module-11-calculation-service/actions/workflows/ci.yml)
 
 ---
 
